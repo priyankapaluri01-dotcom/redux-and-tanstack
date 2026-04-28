@@ -1,10 +1,9 @@
-
-
 :root {
   --primary-brown: #6f4e37;
   --light-cream: #fdfaf5;
   --accent-orange: #d17a22;
   --text-dark: #332a24;
+  --card-bg: #ffffff;
 }
 
 body {
@@ -16,98 +15,118 @@ body {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px; /* Width koncham pencha, so screen ekkuva fill avthundi */
   margin: 0 auto;
   padding: 40px 20px;
   text-align: center;
 }
 
 header h1 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3.5rem); /* Responsive font size */
   color: var(--primary-brown);
   margin-bottom: 10px;
+  font-weight: 800;
 }
 
 header p {
   color: #777;
   margin-bottom: 30px;
+  font-weight: 300;
 }
 
 .fetch-btn {
   background-color: var(--primary-brown);
   color: white;
-  padding: 15px 40px;
+  padding: 15px 45px;
   font-size: 1.1rem;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.3s;
-  box-shadow: 0 4px 15px rgba(111, 78, 55, 0.3);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(111, 78, 55, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .fetch-btn:hover {
   background-color: var(--accent-orange);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(209, 122, 34, 0.3);
 }
 
 .fetch-btn:disabled {
-  background-color: #ccc;
+  background-color: #bcaaa4;
   cursor: not-allowed;
+  transform: none;
 }
 
-/* Coffee Grid */
+/* --- Coffee Grid Magic --- */
 .coffee-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* minmax(300px) valla cards mari chinnavga avvavu, 1fr valla space ni fill chestayi */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
   margin-top: 50px;
+  padding-bottom: 50px;
 }
 
 .coffee-card {
-  background: white;
-  border-radius: 15px;
+  background: var(--card-bg);
+  border-radius: 20px; /* Border radius pencha for modern look */
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  transition: transform 0.3s;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   text-align: left;
+  display: flex;
+  flex-direction: column; /* Card content ni vertical ga align chestundi */
+  height: 100%; /* Anni cards oke height lo untayi */
 }
 
 .coffee-card:hover {
-  transform: scale(1.03);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(111, 78, 55, 0.15);
 }
 
 .coffee-card img {
   width: 100%;
-  height: 200px;
+  height: 250px; /* Image height koncham pencha visually attractive ga undali ani */
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.coffee-card:hover img {
+  transform: scale(1.05); /* Hover chesthe image zoom avthundi */
 }
 
 .coffee-card h3 {
-  padding: 15px 15px 5px 15px;
+  padding: 20px 20px 10px 20px;
   margin: 0;
   color: var(--primary-brown);
+  font-size: 1.4rem;
 }
 
 .coffee-card p {
-  padding: 0 15px 15px 15px;
-  font-size: 0.9rem;
-  color: #666;
-  line-height: 1.4;
+  padding: 0 20px 20px 20px;
+  font-size: 0.95rem;
+  color: #5a5a5a;
+  line-height: 1.6;
+  flex-grow: 1; /* Description thakkuva unna, empty space ni idi fill chestundi */
 }
 
 /* Loader / Spinner */
 .loader {
-  margin-top: 50px;
+  margin: 80px auto;
+  text-align: center;
 }
 
 .spinner {
-  width: 50px;
-  height: 50px;
-  border: 5px solid #ddd;
-  border-top: 5px solid var(--accent-orange);
+  width: 60px;
+  height: 60px;
+  border: 6px solid #e0e0e0;
+  border-top: 6px solid var(--accent-orange);
   border-radius: 50%;
   margin: 0 auto 20px;
-  animation: spin 1s linear infinite;
+  animation: spin 0.8s cubic-bezier(0.5, 0.1, 0.4, 0.9) infinite;
 }
 
 @keyframes spin {
@@ -116,10 +135,12 @@ header p {
 }
 
 .error-card {
-  background-color: #fee;
-  color: #c00;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 30px;
-  border: 1px solid #fcc;
+  background-color: #fff5f5;
+  color: #d32f2f;
+  padding: 25px;
+  border-radius: 15px;
+  margin: 40px auto;
+  max-width: 500px;
+  border: 1px solid #ffcdd2;
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.1);
 }
